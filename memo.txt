@@ -1,0 +1,36 @@
+$ mkdir -p $HOME/local/src
+$ cd $HOME/local/src
+# ncursesというのが必要みたいだからビルドする
+$ wget http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz
+$ tar zxvf ncurses-5.9.tar.gz
+$ cd $HOME/local/src/ncurses-5.9
+$ ./configure --prefix=$HOME/local
+$ make
+$ make install
+
+# .bashrcとか.zshrcに以下を記述してsource .bashrc とかsource .zshrcする
+# export PATH=$HOME/local/bin:$PATH
+# export MANPATH=$HOME/local/man:$MANPATH
+
+# vim入れるよ！
+$ cd $HOME/local/src
+$ wget http://ftp.vim.org/pub.vim/unix/vim-7.3.tar.bz2 
+$ tar -jxf vim-7.3.tar.bz2
+$ cd $HOME/local/src/vim-7.3
+$ mkdir patches
+$ cd $HOME/local/src/vim-7.3/patches
+$ curl -O 'http://ftp.vim.org/pub/vim/patches/7.3/7.3.[001-884]'
+$ cd ..
+$ cat patches/* | patch -p0
+$ ./configure \
+--prefix=$HOME/local \
+--with-features=huge \
+--enable-multibyte \
+--disable-selinux \
+--with-local-dir=$HOME/local
+$ make
+$ make install
+
+# .bashrcとか.zshrcに以下を記述してsource .bashrc とかsource .zshrcする
+# alias vim='$HOME/local/bin/vim'
+
