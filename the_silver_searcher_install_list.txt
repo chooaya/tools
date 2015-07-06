@@ -1,0 +1,8 @@
+  sudo yum install libpcre
+  sudo yum install pcre pcre-devel
+  sudo yum install xz xz-devel
+  git clone https://github.com/ggreer/the_silver_searcher.git
+  cd the_silver_searcher/
+  sed -i -e "s/configure/configure --prefix=\$MYHOME/g" build.sh
+  ./build.sh
+  make install
